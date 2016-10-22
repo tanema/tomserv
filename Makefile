@@ -1,8 +1,6 @@
 all:
-	scp ./config/vsftpd.conf $1:vsftpd.conf
-	ssh root@$1 'bash -s' < ./scripts/server_setup.sh
-	ssh root@$1 'bash -s' < ./scripts/admin_user_setup.sh $2 $3
+	@scp ./config/vsftpd.conf $(host):vsftpd.conf
+	@ssh root@$(host) 'bash -s' < ./scripts/server_setup.sh
+	@ssh root@$(host) 'bash -s' < ./scripts/admin_user_setup.sh $(user) $(pw)
 add:
-	ssh root@$1 'bash -s' < ./scripts/server_setup.sh $2 $3
-
-
+	@ssh root@$(host) 'bash -s' < ./scripts/server_setup.sh $(root) $(user) $(pw)
